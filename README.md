@@ -1,3 +1,8 @@
+# Usage
+1. [check time_checker batch](https://docs.google.com/spreadsheets/d/10m-t07dQNktoX_bmQEAmtqhd9wDDFFMIWtjo8bgAHMw/edit#gid=0)
+2. set config.py
+3. run time_checker.py (weekly & monthly)
+
 # REF
 - [[Python] Googleスプレッドシートにアクセスするための設定](https://note.com/kohaku935/n/ned9e907aac77)
 - [[Python] Googleスプレッドシートのデータを読み込み、pandasのDataFrame型として取り込む](https://note.com/kohaku935/n/nc13bcd11632d#5aca33a9-3a33-482d-b944-372ba8fed33e)
