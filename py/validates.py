@@ -18,7 +18,7 @@ def validates_24hours(sum_list: list):
     assert set(sum_list) == {"24.00"}, AssertionError("Not 24 hours date exists.")
 
 def validate_bad_records(df: pd.DataFrame):
-    assert not df_long[df["time"] == "#NUM!"].shape[0], AssertionError(
+    assert not df[df["time"] == "#NUM!"].shape[0], AssertionError(
         "Bad records exist."
     )
     print("Bad records num:", df[df["time"] == "#NUM!"].shape[0])
