@@ -1,0 +1,12 @@
+black
+flake8
+isort
+mypy
+jupyterlab
+jupyterlab_code_formatter
+pandas
+gspread
+google-auth-httplib2
+oauth2client
+matplotlib
+logzero
