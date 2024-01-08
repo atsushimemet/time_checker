@@ -3,3 +3,4 @@
 .ipynb_checkpoints/
 time-checker-410603-30bc9b39c86e.json
 __pycache__/
+py/log/*.txt
