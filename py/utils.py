@@ -5,10 +5,9 @@ import gspread
 import logzero
 import matplotlib.pyplot as plt
 import pandas as pd
+from config import designated_date
 from logzero import logger
 from oauth2client.service_account import ServiceAccountCredentials
-
-from config import designated_date
 from validates import validates_24hours
 
 
@@ -107,7 +106,7 @@ def correct_bad_records(df: pd.DataFrame, bad_rec_index: list) -> pd.DataFrame:
         c = df.loc[idx].calendar
         t = df[df["date"] == d]["time"].tolist()
         if t.count("#NUM!") == 0:
-            break
+            continue
         elif t.count("#NUM!") == 1:
             complement = str(24.00 - sum([float(v) for v in t if v != "#NUM!"]))  # noqa
             df.loc[idx] = [d, w, c, complement]
