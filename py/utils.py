@@ -179,6 +179,3 @@ def output_graph(df: pd.DataFrame, window: int, save: bool = False):
             plt.savefig(f"./graph/monthly/{graph_file_name}")
         else:
             logger.warning("bad window config is set.")
-
-    # グラフを表示
-    plt.show()
