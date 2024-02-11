@@ -19,7 +19,7 @@ def validate_calendar_null_date(tmp: list):
 
 def validates_24hours(sum_list: list):
     assert set(sum_list) == {"24.00"}, AssertionError(
-        "Not 24 hours date exists."
+        f"Not 24 hours date exists.\nsum_list set is {set(sum_list)}"
     )  # noqa
 
 
