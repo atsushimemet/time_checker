@@ -22,6 +22,7 @@ class ValidatorCalendarValue:
         self.sheet = sheet
         self.date_list = sheet[0]
         self.weekday_list = sheet[1]
+        self.calendar_list = sheet[2:]
 
     def head_oflist_oflists(self):
         l_head = [a_list[0] for a_list in self.sheet]
@@ -59,6 +60,28 @@ class ValidatorCalendarValue:
         valid_weekdays = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"]
         expected = set(valid_weekdays)
         assert set(self.weekday_list[1:]) == expected
+
+    def calendar_format(self):
+        for calendar_list in self.calendar_list:
+            for item in calendar_list[1:]:
+                # 特定の文字列のチェック
+                if item == "#NUM!":
+                    continue
+                # 浮動小数点数の文字列のチェック
+                try:
+                    # intに変換できるかどうかを確認
+                    if str(int(float(item))) == item:
+                        raise ValueError(f"items is integer:{item}")
+                    # floatに変換しても元の文字列と異ならないか、
+                    elif str(float(item)) == item:
+                        continue
+                except ValueError:
+                    pass
+                else:
+                    # このelseはtryブロックが成功した場合に実行される
+                    continue
+                # 条件に合致しない要素が見つかった場合
+                raise ValueError(f"Invalid element found: {item}")
 
 
 def validates_24hours(sum_list: list):
