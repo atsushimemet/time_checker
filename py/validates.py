@@ -17,9 +17,70 @@ def validate_calendar_null_date(tmp: list):
     )
 
 
+class ValidatorCalendarValue:
+    def __init__(self, sheet):
+        self.sheet = sheet
+        self.date_list = sheet[0]
+        self.weekday_list = sheet[1]
+        self.calendar_list = sheet[2:]
+
+    def head_oflist_oflists(self):
+        l_head = [a_list[0] for a_list in self.sheet]
+        expected = [
+            "date",
+            "weekday",
+            "Sleep",
+            "MorningRoutine",
+            "Personal",
+            "RegularRevenue",
+            "House",
+            "Vook&NewBusiness",
+            "Friends",
+            "Training",
+            "Move",
+            "Study",
+            "sum",
+        ]
+        assert l_head == expected, AssertionError(
+            f"Check head of list of lists.\n\tl_head:{l_head}\n\texpected:{expected}"
+        )
+
+    def date_format(self):
+        for date_str in self.date_list[1:]:
+            try:
+                # yyyy/mm/dd 形式で日付が正しいか確認
+                datetime.strptime(date_str, "%Y/%m/%d")
+            except ValueError:
+                # 日付が指定された形式でない場合はFalseを返す
+                return False
+        # すべての日付が指定された形式である場合はTrueを返す
+        return True
+
+    def weekday_format(self):
+        valid_weekdays = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"]
+        expected = set(valid_weekdays)
+        assert set(self.weekday_list[1:]) == expected
+
+    def calendar_format(self):
+        for calendar_list in self.calendar_list:
+            for item in calendar_list[1:]:
+                # 特定の文字列のチェック
+                if item == "#NUM!":
+                    continue
+                # 整数の文字列のチェック
+                elif "." not in item:
+                    raise ValueError(f"items is integer:{item}")
+                # 浮動小数点数の文字列のチェック
+                try:
+                    str(float(item)) == item
+                    continue
+                except ValueError:
+                    raise ValueError(f"Invalid element found: {item}")
+
+
 def validates_24hours(sum_list: list):
     assert set(sum_list) == {"24.00"}, AssertionError(
-        "Not 24 hours date exists."
+        f"Not 24 hours date exists.\nsum_list set is {set(sum_list)}"
     )  # noqa
 
 
