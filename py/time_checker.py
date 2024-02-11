@@ -34,6 +34,7 @@ def main(window, designated_date):
     vcv = ValidatorCalendarValue(sheet)
     vcv.head_oflist_oflists()
     vcv.date_format()
+    vcv.weekday_format()
     print("Here")
     # 縦持ちのデータを作る
     df_long = create_df_long(sheet)

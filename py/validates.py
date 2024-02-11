@@ -21,6 +21,7 @@ class ValidatorCalendarValue:
     def __init__(self, sheet):
         self.sheet = sheet
         self.date_list = sheet[0]
+        self.weekday_list = sheet[1]
 
     def head_oflist_oflists(self):
         l_head = [a_list[0] for a_list in self.sheet]
@@ -53,6 +54,11 @@ class ValidatorCalendarValue:
                 return False
         # すべての日付が指定された形式である場合はTrueを返す
         return True
+
+    def weekday_format(self):
+        valid_weekdays = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"]
+        expected = set(valid_weekdays)
+        assert set(self.weekday_list[1:]) == expected
 
 
 def validates_24hours(sum_list: list):
