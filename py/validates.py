@@ -20,6 +20,7 @@ def validate_calendar_null_date(tmp: list):
 class ValidatorCalendarValue:
     def __init__(self, sheet):
         self.sheet = sheet
+        self.date_list = sheet[0]
 
     def head_oflist_oflists(self):
         l_head = [a_list[0] for a_list in self.sheet]
@@ -41,6 +42,17 @@ class ValidatorCalendarValue:
         assert l_head == expected, AssertionError(
             f"Check head of list of lists.\n\tl_head:{l_head}\n\texpected:{expected}"
         )
+
+    def date_format(self):
+        for date_str in self.date_list[1:]:
+            try:
+                # yyyy/mm/dd 形式で日付が正しいか確認
+                datetime.strptime(date_str, "%Y/%m/%d")
+            except ValueError:
+                # 日付が指定された形式でない場合はFalseを返す
+                return False
+        # すべての日付が指定された形式である場合はTrueを返す
+        return True
 
 
 def validates_24hours(sum_list: list):

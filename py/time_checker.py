@@ -33,6 +33,7 @@ def main(window, designated_date):
     validate_calendar_null_date(sheet)
     vcv = ValidatorCalendarValue(sheet)
     vcv.head_oflist_oflists()
+    vcv.date_format()
     print("Here")
     # 縦持ちのデータを作る
     df_long = create_df_long(sheet)
