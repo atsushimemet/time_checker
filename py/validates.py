@@ -69,7 +69,6 @@ class ValidatorCalendarValue:
                     continue
                 # 整数の文字列のチェック
                 elif "." not in item:
-                    print(item)
                     raise ValueError(f"items is integer:{item}")
                 # 浮動小数点数の文字列のチェック
                 try:
