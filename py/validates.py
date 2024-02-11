@@ -67,21 +67,16 @@ class ValidatorCalendarValue:
                 # 特定の文字列のチェック
                 if item == "#NUM!":
                     continue
+                # 整数の文字列のチェック
+                elif "." not in item:
+                    print(item)
+                    raise ValueError(f"items is integer:{item}")
                 # 浮動小数点数の文字列のチェック
                 try:
-                    # intに変換できるかどうかを確認
-                    if str(int(float(item))) == item:
-                        raise ValueError(f"items is integer:{item}")
-                    # floatに変換しても元の文字列と異ならないか、
-                    elif str(float(item)) == item:
-                        continue
-                except ValueError:
-                    pass
-                else:
-                    # このelseはtryブロックが成功した場合に実行される
+                    str(float(item)) == item
                     continue
-                # 条件に合致しない要素が見つかった場合
-                raise ValueError(f"Invalid element found: {item}")
+                except ValueError:
+                    raise ValueError(f"Invalid element found: {item}")
 
 
 def validates_24hours(sum_list: list):
