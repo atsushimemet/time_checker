@@ -16,6 +16,7 @@ from utils import (
     output_graph,
 )
 from validates import (
+    ValidatorCalendarValue,
     validate_bad_records,
     validate_calendar_null_date,
     validate_data_types,
@@ -30,7 +31,9 @@ def main(window, designated_date):
     # ローデータを取得する
     sheet = get_worksheet_values(JSON_PATH, SS_ID, SHEET_NAME)
     validate_calendar_null_date(sheet)
-
+    vcv = ValidatorCalendarValue(sheet)
+    vcv.head_oflist_oflists()
+    print("Here")
     # 縦持ちのデータを作る
     df_long = create_df_long(sheet)
     logger.info(

@@ -17,6 +17,32 @@ def validate_calendar_null_date(tmp: list):
     )
 
 
+class ValidatorCalendarValue:
+    def __init__(self, sheet):
+        self.sheet = sheet
+
+    def head_oflist_oflists(self):
+        l_head = [a_list[0] for a_list in self.sheet]
+        expected = [
+            "date",
+            "weekday",
+            "Sleep",
+            "MorningRoutine",
+            "Personal",
+            "RegularRevenue",
+            "House",
+            "Vook&NewBusiness",
+            "Friends",
+            "Training",
+            "Move",
+            "Study",
+            "sum",
+        ]
+        assert l_head == expected, AssertionError(
+            f"Check head of list of lists.\n\tl_head:{l_head}\n\texpected:{expected}"
+        )
+
+
 def validates_24hours(sum_list: list):
     assert set(sum_list) == {"24.00"}, AssertionError(
         f"Not 24 hours date exists.\nsum_list set is {set(sum_list)}"
