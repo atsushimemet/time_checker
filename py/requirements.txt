@@ -10,3 +10,4 @@ google-auth-httplib2
 oauth2client
 matplotlib
 logzero
+pandas-stubs
