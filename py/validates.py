@@ -2,6 +2,7 @@ import sys
 from datetime import datetime, timedelta
 
 import pandas as pd
+from logzero import logger
 
 
 def validate_calendar_null_date(tmp: list):
@@ -18,7 +19,7 @@ def validate_calendar_null_date(tmp: list):
             ("Not all calendar information for the dates is available.")
         )
     except AssertionError as e:
-        print(e)
+        logger.warning(e)
         sys.exit(2)
 
 
