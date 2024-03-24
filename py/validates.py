@@ -1,3 +1,4 @@
+import sys
 from datetime import datetime, timedelta
 
 import pandas as pd
@@ -12,9 +13,13 @@ def validate_calendar_null_date(tmp: list):
 
     actual = tmp[0][1:]
     expected = date_str_list
-    assert actual == expected, AssertionError(
-        "Not all calendar information for the dates is available."
-    )
+    try:
+        assert actual == expected, AssertionError(
+            ("Not all calendar information for the dates is available.")
+        )
+    except AssertionError as e:
+        print(e)
+        sys.exit(2)
 
 
 class ValidatorCalendarValue:
