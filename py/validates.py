@@ -120,8 +120,8 @@ def validates_calculate_moving_average(
     # X日前の日付を計算
     start_date_p = check_date_p - timedelta(days=window - 1)
     # 新しい日付をyyyy-mm-dd形式の文字列型に変換
-    start_date_p = start_date_p.strftime("%Y-%m-%d")
-    df_tmp_20240101_raw = df_long.loc[start_date_p:check_date]
+    start_date_s = start_date_p.strftime("%Y-%m-%d")
+    df_tmp_20240101_raw = df_long.loc[start_date_s:check_date]
     actual = df_tmp_20240101_raw[df_tmp_20240101_raw["calendar"] == "friends"][
         "time"
     ].mean()
