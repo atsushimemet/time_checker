@@ -1,4 +1,5 @@
 import sys
+from collections import Counter
 from datetime import datetime, timedelta
 
 import pandas as pd
@@ -19,6 +20,11 @@ def validate_calendar_null_date(tmp: list):
             ("Not all calendar information for the dates is available.")
         )
     except AssertionError as e:
+        # リスト内の各要素の出現回数をカウント
+        counted = Counter(actual)
+        # 出現回数が1より大きい、つまり重複している要素を抽出
+        duplicates = [item for item, count in counted.items() if count > 1]
+        logger.info(f"重複している値:{duplicates}")
         logger.warning(e)
         sys.exit(2)
 
